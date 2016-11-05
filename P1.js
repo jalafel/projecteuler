@@ -22,7 +22,7 @@ function computeIntersection(integers, max) {
         unique.push(a);
     });
 
-    return getSum(intersection)/2 + getSum(unique);
+    return getSum(intersection)/integers.length + getSum(unique);
 }
 
 function getMultiplesOf(integers, max) {
@@ -60,3 +60,15 @@ solution({
   integers: [3, 5],
   max: 1000
 });
+
+/* ====== Meta ========================================= *
+ *
+ *  Estimated time of completion: 1 hour
+ *  Search engine used: yes
+ *  Concepts learned: number theory, intersection of sets
+ *
+ *  Additional notes: pay attention to language (in this case, the
+ *  word: 'or') which will help determine the tools and
+ *  equations necessary to solve your problem
+ *
+ * ========================================**/
