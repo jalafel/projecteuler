@@ -9,50 +9,23 @@
  *
  * ========================================**/
 
-function computeIntersection(integers, max) {
-    var fullArr = getMultiplesOf(integers, max);
-        intersection = [],
-        unique = [],
-        denominator = commonDenominator(integers);
-
-    intersection = fullArr.filter(function(a){
-      if (a % denominator === 0)
-        return true;
-      else
-        unique.push(a);
-    });
-
-    return getSum(intersection)/integers.length + getSum(unique);
-}
-
 function getMultiplesOf(integers, max) {
-  var tmp = [];
-
-  integers.forEach(function(num) {
-    for (var i = 0; i < max; i++)
-      if (i % num === 0)
-        tmp.push(i);
-  });
-
-  return tmp;
+  var sum = 0;
+  for (var i = 0; i < max; i++) {
+    if (checkMod(integers, i))
+      sum += i;
+  }
+  return sum;
 }
 
-function getSum(integers) {
-  return integers.reduce(function(a,b){
-    return a + b;
-  }, 0);
-}
-
-function commonDenominator(integers) {
-  return integers.reduce(function(a,b){
-    return a * b;
-  });
+function checkMod(integers, num) {
+  return integers.filter(function(mod) {
+    return num % mod === 0;
+  }).length !== 0;
 }
 
 function solution(data) {
-  var answer = computeIntersection(data.integers, data.max);
-
-  // solution to problem 1
+  var answer = getMultiplesOf(data.integers, data.max);
   console.log(`The sum of all multiples of 3 or 5 below 1000 is: ${answer}`);
 }
 
@@ -70,5 +43,8 @@ solution({
  *  Additional notes: pay attention to language (in this case, the
  *  word: 'or') which will help determine the tools and
  *  equations necessary to solve your problem
+ *
+ *  Refactor notes: try to write in as less lines as possible
+ *  while maintaining functional design
  *
  * ========================================**/
